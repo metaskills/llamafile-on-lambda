@@ -3,11 +3,11 @@ FROM public.ecr.aws/lambda/nodejs:20
 # Create llamafile extension
 RUN mkdir -p /opt/extensions/llamafile
 COPY ./tmp/llamafile/* /opt/extensions/llamafile
-COPY llamafile.sh /opt/extensions/
+COPY ext/llamafile.sh /opt/extensions/
 
-# Set LAMBDA_TASK_ROOT
-ENV LAMBDA_TASK_ROOT=/app
-WORKDIR $LAMBDA_TASK_ROOT
+# Lambda Web Adapter
+COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.3 /lambda-adapter /opt/extensions/lambda-adapter
+ENV AWS_LWA_INVOKE_MODE=response_stream
 
 # Install findutils package which includes the find command
 RUN microdnf update && \
@@ -18,4 +18,4 @@ RUN microdnf update && \
 COPY app.js ${LAMBDA_TASK_ROOT}
 
 # Start the Lambda function
-CMD [ "app.handler" ]
+CMD [ "sleep", "infinity" ]

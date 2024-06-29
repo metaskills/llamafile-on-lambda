@@ -16,9 +16,12 @@ register_extension() {
 
 # Function to start the llamafile process
 start_llamafile() {
-    # Start llamafile as a background process
-    # Adjust the parameters as needed
-    $LLAMAFILE_PATH --host 127.0.0.1 --port 8080 &
+    $LLAMAFILE_PATH \
+      --nobrowser \
+      --quiet \
+      --log-disable \
+      --host 127.0.0.1 \
+      --port 8080 &
     LLAMAFILE_PID=$!
 }
 

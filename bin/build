@@ -1,17 +1,13 @@
 #!/bin/sh
 set -e
 
-tag="llamafile-on-lambda"
+source ./variables.sh
 
-llamarepo="Phi-3-mini-4k-instruct-llamafile"
-llamafile="Phi-3-mini-4k-instruct.F16.llamafile"
-download_dir="./tmp/llamafile"
+mkdir -p $llamafiledir
 
-mkdir -p $download_dir
-
-if [ ! -f "$download_dir/$llamafile" ]; then
-  curl -L "https://huggingface.co/Mozilla/${llamarepo}/resolve/main/${llamafile}" -o "$download_dir/$llamafile"
-  chmod +x "$download_dir/$llamafile"
+if [ ! -f "$llamafiledir/$llamafile" ]; then
+  curl -L "https://huggingface.co/Mozilla/${llamarepo}/resolve/main/${llamafile}" -o "$llamafiledir/$llamafile"
+  chmod +x "$llamafiledir/$llamafile"
 fi
 
-# docker build -t $tag .
+docker build -t $llamaimage .

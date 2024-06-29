@@ -2,21 +2,21 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Llamafile on Lambda
 
-Globals:
-  Function:
-    Architectures: 
-      - arm64
-
 Resources:
   LlamafileFunction:
     Type: AWS::Serverless::Function
     Properties:
+      Architectures: 
+        - arm64
       PackageType: Image
       ImageUri: llamafile-on-lambda:latest
-      MemorySize: 10240  # 10 GB of memory
-      Timeout: 300  # 5 minutes, maximum is 15 minutes
+      MemorySize: 10240
+      Timeout: 120
+      FunctionUrlConfig:
+        AuthType: NONE
+        InvokeMode: RESPONSE_STREAM
 
 Outputs:
-  LlamafileFunctionArn:
-    Description: "Llamafile on Lambda ARN"
-    Value: !GetAtt LlamafileFunction.Arn
+  LlamafileInvokeUrl:
+    Description: Lambda Function URL
+    Value: !GetAtt LlamafileFunction.FunctionUrl

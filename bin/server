@@ -1,0 +1,8 @@
+#!/bin/sh
+set -e
+
+source ./variables.sh
+
+$llamafiledir/$llamafile \
+  --host 127.0.0.1 \
+  --port 8080
