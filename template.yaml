@@ -3,7 +3,7 @@ Transform: AWS::Serverless-2016-10-31
 Description: Llamafile on Lambda
 
 Resources:
-  LlamafileFunction:
+  Lambda:
     Type: AWS::Serverless::Function
     Properties:
       Architectures: 
@@ -17,6 +17,6 @@ Resources:
         InvokeMode: RESPONSE_STREAM
 
 Outputs:
-  LlamafileInvokeUrl:
+  LambdaFunctionUrl:
     Description: Lambda Function URL
-    Value: !GetAtt LlamafileFunction.FunctionUrl
+    Value: !GetAtt LambdaUrl.FunctionUrl
