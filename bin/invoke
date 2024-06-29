@@ -1,0 +1,37 @@
+#!/bin/sh
+set -e
+
+# Check if AWS CLI is installed
+if ! command -v aws &> /dev/null
+then
+  echo "AWS CLI could not be found. Please install it."
+  exit 1
+fi
+
+# Check if an argument is provided
+if [ "$#" -ne 1 ]; then
+  echo "Usage: $0 <Lambda Function Name or ARN>"
+  exit 1
+fi
+
+lambda_function_name_or_arn=$1
+
+# Prompt input for the Lambda function
+read -p "Enter the prompt for the Lambda function: " user_prompt
+
+# Prepare the JSON input for the Lambda function
+json_input=$(jq -n --arg prompt "$user_prompt" '{prompt: $prompt}')
+
+# Invoke the Lambda function
+aws lambda invoke \
+    --function-name "$lambda_function_name_or_arn" \
+    --payload "$json_input" \
+    response.json
+
+# Output the response
+echo "Lambda function response:"
+cat response.json
+echo
+
+# Clean up
+rm response.json

@@ -1,0 +1,17 @@
+#!/bin/sh
+set -e
+
+tag="llamafile-on-lambda"
+
+llamarepo="Phi-3-mini-4k-instruct-llamafile"
+llamafile="Phi-3-mini-4k-instruct.F16.llamafile"
+download_dir="./tmp/llamafile"
+
+mkdir -p $download_dir
+
+if [ ! -f "$download_dir/$llamafile" ]; then
+  curl -L "https://huggingface.co/Mozilla/${llamarepo}/resolve/main/${llamafile}" -o "$download_dir/$llamafile"
+  chmod +x "$download_dir/$llamafile"
+fi
+
+# docker build -t $tag .

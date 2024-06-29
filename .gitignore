@@ -1,0 +1,4 @@
+.DS_Store
+/.aws-sam/*
+/tmp/*
+samconfig.toml
