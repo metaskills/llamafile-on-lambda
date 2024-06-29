@@ -13,6 +13,7 @@ RUN microdnf update && \
 # Lambda Web Adapter
 COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.3 /lambda-adapter /opt/extensions/lambda-adapter
 ENV AWS_LWA_INVOKE_MODE=response_stream
+ENV AWS_LWA_ASYNC_INIT=true
 
 # Start the Lambda function
 CMD [ "sleep", "infinity" ]
