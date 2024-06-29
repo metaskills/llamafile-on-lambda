@@ -24,6 +24,24 @@ start_llamafile() {
   LLAMAFILE_PID=$!
 }
 
+# Function to check if llamafile is ready
+check_llamafile_ready() {
+  timeout=30
+  start_time=$(date +%s)
+  while true; do
+    if curl -s "http://127.0.0.1:8080/health" > /dev/null 2>&1; then
+      echo "llamafile is ready"
+      return 0
+    fi
+    current_time=$(date +%s)
+    if [ $((current_time - start_time)) -ge $timeout ]; then
+      echo "Timeout waiting for llamafile to be ready"
+      return 1
+    fi
+    sleep 1
+  done
+}
+
 # Function to process events
 process_events() {
   while true; do
@@ -37,6 +55,10 @@ process_events() {
     if [ "${EVENT_TYPE}" = "INVOKE" ]; then
       # llamafile is already running, no need to do anything for INVOKE
       :
+    elif [ "${EVENT_TYPE}" = "SHUTDOWN" ]; then
+      echo "Shutting down llamafile"
+      kill $LLAMAFILE_PID
+      exit 0
     fi
   done
 }
@@ -45,4 +67,12 @@ process_events() {
 echo "Starting llamafile extension"
 register_extension
 start_llamafile
+
+# Wait for llamafile to be ready (with timeout)
+if ! check_llamafile_ready; then
+  echo "Failed to start llamafile, exiting"
+  exit 1
+fi
+
+echo "llamafile started successfully, processing events"
 process_events

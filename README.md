@@ -38,3 +38,21 @@ Value          https://rqtkljzqpunkbwcwm4iysxpg3m0oxyze.lambda-url.us-east-1.on.
 ------------------------------------------------------------------------------------
 ```
 
+
+## Hurdles
+
+Random notes to myself on where things were tricky. First up, using Lambda Extension and dealing with slow (presumably > 10s init) issues. Assuming use with Lambda Web Adapter with Llamafile's server, ensure LWA is asnyc.
+
+```dockerfile
+ENV AWS_LWA_ASYNC_INIT=true
+```
+
+Finally able to get to the warming up the model step. Note the 10s timestamps. Perhaps the panicked is the init phase doing a timeout and hard shutdown.
+
+```
+2024-06-29T19:27:57.541Z	warming up the model with an empty run
+2024-06-29T19:28:07.229Z	thread 'main' panicked at src/main.rs:25:25:
+2024-06-29T19:28:07.229Z	lambda runtime failed: Error { kind: SendRequest, source: Some(hyper::Error(IncompleteMessage)) }
+```
+
+
