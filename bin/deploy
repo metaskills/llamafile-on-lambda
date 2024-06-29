@@ -1,10 +1,10 @@
 #!/bin/sh
 set -e
 
-sam build --use-container
+./bin/build
 
 if [ -f "samconfig.toml" ]; then
   sam deploy --config-file samconfig.toml
 else
-  sam deploy --guided
+  sam deploy --guided --stack-name "llamafile-on-lambda"
 fi
