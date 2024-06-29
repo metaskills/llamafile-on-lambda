@@ -14,8 +14,5 @@ RUN microdnf update && \
     microdnf install -y findutils && \
     microdnf clean all
 
-# Copy the handler
-COPY app.js ${LAMBDA_TASK_ROOT}
-
 # Start the Lambda function
 CMD [ "sleep", "infinity" ]
