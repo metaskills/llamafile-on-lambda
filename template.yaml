@@ -11,10 +11,13 @@ Resources:
       PackageType: Image
       ImageUri: llamafile-on-lambda:latest
       MemorySize: 10240
-      Timeout: 900
+      Timeout: 120
       FunctionUrlConfig:
         AuthType: NONE
         InvokeMode: RESPONSE_STREAM
+      ProvisionedConcurrencyConfig:
+        ProvisionedConcurrentExecutions: 1
+      AutoPublishAlias: live
 
 Outputs:
   LambdaFunctionUrl:
