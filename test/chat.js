@@ -1,12 +1,20 @@
 import { OpenAI } from "openai";
 import inquirer from "inquirer";
 
-const baseURL = process.env.BASE_URL?.length
-  ? process.env.BASE_URL
-  : "http://localhost:8080/";
+async function getBaseURL() {
+  const { baseURL } = await inquirer.prompt([
+    {
+      type: "input",
+      name: "baseURL",
+      message: "Enter the base URL:",
+      default: "http://localhost:8080/",
+    },
+  ]);
+  return baseURL;
+}
 
+const baseURL = await getBaseURL();
 const openai = new OpenAI({ baseURL: `${baseURL}v1`, apiKey: "no-key" });
-
 const messages = [];
 
 async function streamCompletion() {
@@ -30,7 +38,7 @@ async function streamCompletion() {
 async function chat() {
   while (true) {
     const { userInput } = await inquirer.prompt([
-      { type: "input", name: "userInput", message: ">" },
+      { type: "input", name: "userInput", message: "Message: >" },
     ]);
     if (userInput.toLowerCase() === "exit") {
       break;
