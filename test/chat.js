@@ -3,22 +3,27 @@ import inquirer from "inquirer";
 
 const baseURL = process.env.BASE_URL?.length
   ? process.env.BASE_URL
-  : "http://localhost:8080";
+  : "http://localhost:8080/";
 
-const openai = new OpenAI({ baseURL: `${baseURL}/v1`, apiKey: "no-key" });
+const openai = new OpenAI({ baseURL: `${baseURL}v1`, apiKey: "no-key" });
 
 const messages = [
   {
-    role: "user",
+    role: "system",
     content:
-      "<|user|>\nBe very brief in your responses. No long explanations.<|end|>",
+      "<|system|>\nBe very brief in your responses. No long explanations.<|end|>",
   },
 ];
 
-async function streamCompletion(messages) {
+function allMessages() {
+  let singleMessage = messages.map((message) => message.content).join("\n");
+  return `${singleMessage}\n<|assistant|>`;
+}
+
+async function streamCompletion() {
   const stream = await openai.chat.completions.create({
     model: "LLaMA_CPP",
-    messages: messages,
+    messages: [{ role: "user", content: allMessages() }],
     stream: true,
   });
   let assistantResponse = "";
@@ -44,9 +49,9 @@ async function chat() {
     }
     messages.push({
       role: "user",
-      content: `<|user|>\n${userInput}<|end|>\n<|assistant|>`,
+      content: `<|user|>\n${userInput}<|end|>`,
     });
-    await streamCompletion(messages);
+    await streamCompletion();
   }
 }
 
