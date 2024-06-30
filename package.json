@@ -1,0 +1,14 @@
+{
+  "name": "llamafile-on-lambda",
+  "version": "1.0.0",
+  "description": "Run llamafile on AWS Lambda",
+  "type": "module",
+  "author": "Ken Collins",
+  "license": "MIT",
+  "scripts": {
+    "test": "node src/test.js"
+  },
+  "dependencies": {
+    "openai": "^4.52.2"
+  }
+}

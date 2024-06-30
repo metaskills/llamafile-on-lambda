@@ -27,7 +27,6 @@ The following assumptions are made for the deploy environment:
 ./bin/deploy
 ```
 
-
 ```
 ------------------------------------------------------------------------------------
 Outputs

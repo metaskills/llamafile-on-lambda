@@ -2,3 +2,4 @@
 /.aws-sam/*
 /tmp/*
 samconfig.toml
+/node_modules/*
