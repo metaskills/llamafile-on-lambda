@@ -57,5 +57,15 @@ Finally able to get to the warming up the model step. Note the 10s timestamps. P
 > [!IMPORTANT]  
 > Going to move this out of an extension to see panic is > 10s init issue.
 
+### Move Lambda Extension to ENTRYPOINT & arm64 to x86_64.
 
+No more panic. Still not llamafile fully booted.
+
+```
+2024-06-30T03:34:30.035Z	Starting llamafile...
+...
+2024-06-30T03:34:30.440Z	warming up the model with an empty run
+2024-06-30T03:34:39.877Z	EXTENSION Name: lambda-adapter State: Ready Events: []
+2024-06-30T03:34:39.877Z	INIT_REPORT Init Duration: 10000.50 ms Phase: init Status: timeout
+```
 

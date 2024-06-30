@@ -6,8 +6,6 @@ Resources:
   Lambda:
     Type: AWS::Serverless::Function
     Properties:
-      Architectures: 
-        - arm64
       PackageType: Image
       ImageUri: llamafile-on-lambda:latest
       MemorySize: 10240

@@ -1,11 +1,11 @@
 FROM public.ecr.aws/lambda/nodejs:20
 
-# Create llamafile extension
-RUN mkdir -p /opt/extensions/llamafile
-COPY ./tmp/llamafile/* /opt/extensions/llamafile
-COPY ext/llamafile.sh /opt/extensions/
+# Create llamafile files
+RUN mkdir -p /opt/llamafile
+COPY ./tmp/llamafile/* /opt/llamafile
+COPY src/command /opt/llamafile/
 
-# Install packages to support extension
+# Install packages to support llamafile
 RUN microdnf update && \
   microdnf install -y findutils gzip && \
   microdnf clean all
@@ -15,5 +15,8 @@ COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.3 /lambda-adapter /opt
 ENV AWS_LWA_INVOKE_MODE=response_stream
 ENV AWS_LWA_ASYNC_INIT=true
 
-# Start the Lambda function
-CMD [ "sleep", "infinity" ]
+COPY src/app.js .
+
+# Start the llamafile with your handler
+ENTRYPOINT [ "/opt/llamafile/command" ]
+CMD [ "app.handler" ]

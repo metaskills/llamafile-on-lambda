@@ -1,0 +1,14 @@
+#!/bin/sh
+set -euo pipefail
+
+LLAMAFILE_PATH=$(find "/opt/llamafile" -name "*.llamafile" -type f)
+
+echo "Starting llamafile..."
+
+HOME=/tmp $LLAMAFILE_PATH \
+  --nobrowser \
+  --log-disable \
+  --host 127.0.0.1 \
+  --port 8080
+
+echo "...done!"

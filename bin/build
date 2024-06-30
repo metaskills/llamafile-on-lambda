@@ -10,4 +10,4 @@ if [ ! -f "$llamafiledir/$llamafile" ]; then
   chmod +x "$llamafiledir/$llamafile"
 fi
 
-docker build -t $llamaimage .
+docker buildx build --platform linux/amd64 --tag $llamaimage --load .
