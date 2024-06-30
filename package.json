@@ -6,9 +6,10 @@
   "author": "Ken Collins",
   "license": "MIT",
   "scripts": {
-    "test": "node test/server.js"
+    "chat": "node test/chat.js"
   },
   "devDependencies": {
+    "inquirer": "^9.3.1",
     "openai": "^4.52.2"
   }
 }
