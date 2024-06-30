@@ -7,5 +7,4 @@ $llamafiledir/$llamafile \
   --nobrowser \
   --log-disable \
   --host 127.0.0.1 \
-  --path /nonexistent \
   --port 8080
