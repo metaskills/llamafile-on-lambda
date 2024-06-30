@@ -90,3 +90,25 @@ In the sandboxing block!
 warning: this OS doesn't support pledge() security
 REPORT RequestId: 9466cbf4-3e91-4d95-948a-a29211c59ab4	Duration: 840969.07 ms	Billed Duration: 840970 ms	Memory Size: 10240 MB	Max Memory Used: 5986 MB
 ```
+
+### arm64 Again
+
+```
+2024-06-30T17:55:47.008Z	Starting llamafile...
+{
+    "function": "server_cli",
+    "level": "INFO",
+    "line": 2868,
+    "msg": "system info",
+    "n_threads": 3,
+    "n_threads_batch": -1,
+    "system_info": "AVX = 0 | AVX_VNNI = 0 | AVX2 = 0 | AVX512 = 0 | AVX512_VBMI = 0 | AVX512_VNNI = 0 | AVX512_BF16 = 0 | FMA = 0 | NEON = 1 | ARM_FMA = 1 | F16C = 0 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 0 | SSSE3 = 0 | VSX = 0 | MATMUL_INT8 = 0 | LLAMAFILE = 1 | ",
+    "tid": "1099516325632",
+    "timestamp": 1719770147,
+    "total_threads": 6
+}
+...
+2024-06-30T17:58:59.828Z	llama server listening at http://127.0.0.1:8080
+2024-06-30T17:58:59.839Z	REPORT RequestId: 9e476a59-290a-4ad0-abd4-5fe1992e899f Duration: 183039.18 ms Billed Duration: 183040 ms Memory Size: 10240 MB Max Memory Used: 6265 MB
+```
+
