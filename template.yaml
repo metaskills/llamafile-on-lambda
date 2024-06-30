@@ -9,7 +9,7 @@ Resources:
       PackageType: Image
       ImageUri: llamafile-on-lambda:latest
       MemorySize: 10240
-      Timeout: 120
+      Timeout: 900
       FunctionUrlConfig:
         AuthType: NONE
         InvokeMode: RESPONSE_STREAM

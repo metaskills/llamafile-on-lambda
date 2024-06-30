@@ -11,12 +11,13 @@ RUN microdnf update && \
   microdnf clean all
 
 # Lambda Web Adapter
-COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.3 /lambda-adapter /opt/extensions/lambda-adapter
-ENV AWS_LWA_INVOKE_MODE=response_stream
-ENV AWS_LWA_ASYNC_INIT=true
+# COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.3 /lambda-adapter /opt/extensions/lambda-adapter
+# ENV AWS_LWA_INVOKE_MODE=response_stream
+# ENV AWS_LWA_ASYNC_INIT=true
 
-COPY src/app.js .
+COPY src/app.js \
+     package.json \
+     package-lock.json .
 
-# Start the llamafile with your handler
-ENTRYPOINT [ "/opt/llamafile/command" ]
+# Start llamafile and no-op handler.
 CMD [ "app.handler" ]

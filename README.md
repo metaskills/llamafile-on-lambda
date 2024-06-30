@@ -69,3 +69,24 @@ No more panic. Still not llamafile fully booted.
 2024-06-30T03:34:39.877Z	INIT_REPORT Init Duration: 10000.50 ms Phase: init Status: timeout
 ```
 
+### Llamafile boot in app.js. No LWA.
+
+```
+{
+    "function": "server_cli",
+    "level": "INFO",
+    "line": 2868,
+    "msg": "system info",
+    "n_threads": 3,
+    "n_threads_batch": -1,
+    "system_info": "AVX = 1 | AVX_VNNI = 0 | AVX2 = 1 | AVX512 = 0 | AVX512_VBMI = 0 | AVX512_VNNI = 0 | AVX512_BF16 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | SSSE3 = 1 | VSX = 0 | MATMUL_INT8 = 0 | LLAMAFILE = 1 | ",
+    "tid": "10729696",
+    "timestamp": 1719767334,
+    "total_threads": 6
+}
+...
+llama server listening at http://127.0.0.1:8080
+In the sandboxing block!
+warning: this OS doesn't support pledge() security
+REPORT RequestId: 9466cbf4-3e91-4d95-948a-a29211c59ab4	Duration: 840969.07 ms	Billed Duration: 840970 ms	Memory Size: 10240 MB	Max Memory Used: 5986 MB
+```
