@@ -17,7 +17,7 @@ const messages = [
 
 function allMessages() {
   let singleMessage = messages.map((message) => message.content).join("\n");
-  return `${singleMessage}\n<|assistant|>`;
+  return singleMessage;
 }
 
 async function streamCompletion() {
