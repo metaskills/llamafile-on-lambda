@@ -15,9 +15,6 @@ Resources:
       FunctionUrlConfig:
         AuthType: NONE
         InvokeMode: RESPONSE_STREAM
-      ProvisionedConcurrencyConfig:
-        ProvisionedConcurrentExecutions: 1
-      AutoPublishAlias: live
 
 Outputs:
   LambdaFunctionUrl:

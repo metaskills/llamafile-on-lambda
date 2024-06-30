@@ -1,5 +1,5 @@
 #!/bin/sh
-set -euo pipefail
+set -euo
 
 LLAMAFILE_PATH=$(find "/opt/llamafile" -name "*.llamafile" -type f)
 

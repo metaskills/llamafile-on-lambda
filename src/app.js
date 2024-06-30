@@ -19,11 +19,3 @@ async function startLlamafile() {
 }
 
 await startLlamafile();
-
-export const handler = async (_event, _context) => {
-  // Your Lambda logic here
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ message: "Hello from Lambda!" }),
-  };
-};

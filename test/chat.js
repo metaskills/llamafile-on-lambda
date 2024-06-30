@@ -6,14 +6,16 @@ async function getBaseURL() {
     {
       type: "input",
       name: "baseURL",
-      message: "Enter the base URL:",
+      message: "Lambda Function URL:",
       default: "http://localhost:8080/",
     },
   ]);
   return baseURL;
 }
 
-const baseURL = await getBaseURL();
+let baseURL = await getBaseURL();
+baseURL = baseURL.endsWith("/") ? baseURL : `${baseURL}/`;
+
 const openai = new OpenAI({ baseURL: `${baseURL}v1`, apiKey: "no-key" });
 const messages = [];
 
