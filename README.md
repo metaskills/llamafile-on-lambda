@@ -55,4 +55,8 @@ Finally able to get to the warming up the model step. Note the 10s timestamps. P
 2024-06-29T19:28:07.229Z	lambda runtime failed: Error { kind: SendRequest, source: Some(hyper::Error(IncompleteMessage)) }
 ```
 
+> [!IMPORTANT]  
+> Going to move this out of an extension to see panic is > 10s init issue.
+
+
 
