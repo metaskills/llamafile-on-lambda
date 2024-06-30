@@ -9,7 +9,6 @@ HOME=/tmp $LLAMAFILE_PATH \
   --nobrowser \
   --log-disable \
   --host 127.0.0.1 \
-  --path /nonexistent \
   --port 8080
 
 echo "...done!"
