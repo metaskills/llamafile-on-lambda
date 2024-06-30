@@ -8,7 +8,7 @@
   "scripts": {
     "test": "node test/server.js"
   },
-  "dependencies": {
+  "devDependencies": {
     "openai": "^4.52.2"
   }
 }
