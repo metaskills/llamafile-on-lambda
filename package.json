@@ -6,7 +6,7 @@
   "author": "Ken Collins",
   "license": "MIT",
   "scripts": {
-    "test": "node src/test.js"
+    "test": "node test/server.js"
   },
   "dependencies": {
     "openai": "^4.52.2"
