@@ -7,24 +7,15 @@ const baseURL = process.env.BASE_URL?.length
 
 const openai = new OpenAI({ baseURL: `${baseURL}v1`, apiKey: "no-key" });
 
-const messages = [
-  {
-    role: "system",
-    content:
-      "<|system|>\nBe very brief in your responses. No long explanations.<|end|>",
-  },
-];
-
-function allMessages() {
-  let singleMessage = messages.map((message) => message.content).join("\n");
-  return singleMessage;
-}
+const messages = [];
 
 async function streamCompletion() {
   const stream = await openai.chat.completions.create({
     model: "LLaMA_CPP",
-    messages: [{ role: "user", content: allMessages() }],
+    messages: messages,
     stream: true,
+    stop: ["<|assistant|>", "<|end|>"],
+    temperature: 0.1,
   });
   let assistantResponse = "";
   for await (const chunk of stream) {
@@ -33,10 +24,7 @@ async function streamCompletion() {
     assistantResponse += content;
   }
   process.stdout.write("\n");
-  messages.push({
-    role: "assistant",
-    content: `<|assistant|>${assistantResponse}<|end|>`,
-  });
+  messages.push({ role: "assistant", content: assistantResponse });
 }
 
 async function chat() {
@@ -47,10 +35,7 @@ async function chat() {
     if (userInput.toLowerCase() === "exit") {
       break;
     }
-    messages.push({
-      role: "user",
-      content: `<|user|>\n${userInput}<|end|>`,
-    });
+    messages.push({ role: "user", content: userInput });
     await streamCompletion();
   }
 }
