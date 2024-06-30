@@ -9,9 +9,9 @@ const openai = new OpenAI({ baseURL: `${baseURL}/v1`, apiKey: "no-key" });
 
 const messages = [
   {
-    role: "system",
+    role: "user",
     content:
-      "<|system|>\nBe very brief in your responses. No long explanations.<|end|>",
+      "<|user|>\nBe very brief in your responses. No long explanations.<|end|>",
   },
 ];
 
@@ -28,7 +28,10 @@ async function streamCompletion(messages) {
     assistantResponse += content;
   }
   process.stdout.write("\n");
-  messages.push({ role: "assistant", content: assistantResponse });
+  messages.push({
+    role: "assistant",
+    content: `<|assistant|>${assistantResponse}<|end|>`,
+  });
 }
 
 async function chat() {
