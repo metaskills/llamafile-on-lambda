@@ -6,7 +6,8 @@
   "author": "Ken Collins",
   "license": "MIT",
   "scripts": {
-    "chat": "node test/chat.js"
+    "chat": "node test/chat.js",
+    "bench": "node test/bench.js"
   },
   "devDependencies": {
     "inquirer": "^9.3.1",

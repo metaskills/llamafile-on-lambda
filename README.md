@@ -112,3 +112,30 @@ REPORT RequestId: 9466cbf4-3e91-4d95-948a-a29211c59ab4	Duration: 840969.07 ms	Bi
 2024-06-30T17:58:59.839Z	REPORT RequestId: 9e476a59-290a-4ad0-abd4-5fe1992e899f Duration: 183039.18 ms Billed Duration: 183040 ms Memory Size: 10240 MB Max Memory Used: 6265 MB
 ```
 
+## Benchmarks
+
+```sql
+
+fields @message
+| filter ispresent(@initDuration)
+| limit 100
+
+
+fields @initDuration
+| filter ispresent(@initDuration)
+| stats max(@initDuration) as max_init
+  by bin(1h)
+```
+
+```sql
+fields @timestamp, @initDuration, @logStream
+| filter ispresent(@initDuration)
+| stats pct(@initDuration, 5) as p5,
+        pct(@initDuration, 50) as p50,
+        pct(@initDuration, 95) as p95,
+        pct(@initDuration, 99) as p99,
+        max(@initDuration) as max_init,
+        count(*) as cold_start_count
+  by bin(15m), @logStream
+| sort @timestamp asc
+```
