@@ -7,7 +7,7 @@ async function getBaseURL() {
       type: "input",
       name: "baseURL",
       message: "Lambda Function URL:",
-      default: "http://localhost:8080/",
+      default: process.env.LAMBDA_FUNCTION_URL || "http://localhost:8080/",
     },
   ]);
   return baseURL;
