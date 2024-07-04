@@ -22,7 +22,7 @@ WORKDIR "/var/task"
 
 COPY src/app.js \
      package.json \
-     package-lock.json ./
+     package-lock.json .
 
 # Start llamafile and no-op handler.
 CMD [ "node", "app.js" ]
