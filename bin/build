@@ -6,8 +6,8 @@ source ./variables.sh
 mkdir -p $llamafiledir
 
 if [ ! -f "$llamafiledir/$llamafile" ]; then
-  curl -L "https://huggingface.co/Mozilla/${llamarepo}/resolve/main/${llamafile}" -o "$llamafiledir/$llamafile"
+  curl -L "$llamafileurl" -o "$llamafiledir/$llamafile"
   chmod +x "$llamafiledir/$llamafile"
 fi
 
-docker buildx build --platform linux/arm64 --tag $llamaimage --load .
+docker buildx build --platform linux/arm64 --tag $llamafileimage --load .
