@@ -10,6 +10,8 @@ RUN apt-get update && \
     apt-get install -y findutils gzip && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+RUN wget -O /usr/bin/ape https://cosmo.zip/pub/cosmos/bin/ape-$(uname -m).elf && \
+    chmod +x /usr/bin/ape
 
 # Lambda Web Adapter
 COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.3 /lambda-adapter /opt/extensions/lambda-adapter
