@@ -24,7 +24,7 @@ async function streamCompletion() {
     model: "LLaMA_CPP",
     messages: messages,
     stream: true,
-    stop: ["<|assistant|>", "<|end|>"],
+    stop: ["<end_of_turn>"],
     temperature: 0.1,
   });
   let assistantResponse = "";
