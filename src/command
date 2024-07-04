@@ -5,10 +5,30 @@ LLAMAFILE_PATH=${LLAMAFILE_PATH:-$(find "/opt/llamafile" -name "*.llamafile" -ty
 
 echo "Starting llamafile..."
 
-HOME=/tmp $LLAMAFILE_PATH \
+echo 'whoami'
+whoami # sbx_user1051
+
+echo 'ulimit -l'
+ulimit -l # 64
+
+# Options that might make sense for you:
+# 
+# --path /nonexistent
+# Avoid serving the non-API web interface.
+
+# Option I am still testing out.
+# 
+# --server \
+# --fast \
+# --nocompile \
+# --threads 3 \
+# --threads-batch 5 \
+# --timeout 600 \
+# --gpu DISABLE
+# --mlock \
+
+$LLAMAFILE_PATH \
   --nobrowser \
   --log-disable \
   --host 127.0.0.1 \
   --port 8080
-
-echo "...done!"
