@@ -5,12 +5,6 @@ LLAMAFILE_PATH=${LLAMAFILE_PATH:-$(find "/opt/llamafile" -name "*.llamafile" -ty
 
 echo "Starting llamafile..."
 
-echo 'whoami'
-whoami # sbx_user1051
-
-echo 'ulimit -l'
-ulimit -l # 64
-
 # Options that might make sense for you:
 # 
 # --path /nonexistent
@@ -18,16 +12,16 @@ ulimit -l # 64
 
 # Option I am still testing out.
 # 
-# --server \
 # --fast \
 # --nocompile \
 # --threads 3 \
 # --threads-batch 5 \
-# --timeout 600 \
-# --gpu DISABLE
-# --mlock \
+# --timeout 600
 
 $LLAMAFILE_PATH \
+  --server \
+  --fast \
+  --gpu DISABLE \
   --nobrowser \
   --log-disable \
   --host 127.0.0.1 \

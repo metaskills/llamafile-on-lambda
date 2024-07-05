@@ -4,6 +4,9 @@ set -e
 source ./variables.sh
 
 $llamafiledir/$llamafile \
+  --server \
+  --fast \
+  --gpu DISABLE \
   --nobrowser \
   --log-disable \
   --host 127.0.0.1 \
