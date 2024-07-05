@@ -1,3 +1,13 @@
+FROM node:20 as llamafile-builder
+
+RUN mkdir /opt/local && \
+    cd /tmp && \
+    git clone https://github.com/Mozilla-Ocho/llamafile.git && \
+    cd llamafile && \
+    git checkout 21a30bed && \
+    make && \
+    make install PREFIX=/opt/local
+
 FROM node:20
 
 # Create llamafile files
@@ -12,6 +22,9 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 RUN wget -O /usr/bin/ape https://cosmo.zip/pub/cosmos/bin/ape-$(uname -m).elf && \
     chmod +x /usr/bin/ape
+
+# Copy llamafile build.
+COPY --from=llamafile-builder /opt/local /usr/local
 
 # Lambda Web Adapter
 COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.3 /lambda-adapter /opt/extensions/lambda-adapter

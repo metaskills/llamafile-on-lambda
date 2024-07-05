@@ -4,10 +4,13 @@ set -e
 source ./variables.sh
 
 mkdir -p $llamafiledir
+mkdir -p ./tmp/bin
 
 if [ ! -f "$llamafiledir/$llamafile" ]; then
   curl -L "$llamafileurl" -o "$llamafiledir/$llamafile"
-  chmod +x "$llamafiledir/$llamafile"
+  if [[ $llamafile == *.llamafile ]]; then
+    chmod +x "$llamafiledir/$llamafile"
+  fi
 fi
 
 docker buildx build --platform linux/arm64 --tag $llamafileimage --load .

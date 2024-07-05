@@ -1,9 +1,9 @@
 #!/bin/sh
 set -e
 
-LLAMAFILE_PATH=${LLAMAFILE_PATH:-$(find "/opt/llamafile" -name "*.llamafile" -type f)}
+LLAMAFILE_PATH=${LLAMAFILE_PATH:-$(find "/opt/llamafile" -name "*.llamafile" -o -name "*.gguf" -type f)}
 
-echo "Starting llamafile..."
+echo "Starting llamafile ${LLAMAFILE_PATH}..."
 
 # Options that might make sense for you:
 # 
@@ -18,7 +18,8 @@ echo "Starting llamafile..."
 # --threads-batch 5 \
 # --timeout 600
 
-$LLAMAFILE_PATH \
+llamafile \
+  --model $LLAMAFILE_PATH \
   --server \
   --fast \
   --gpu DISABLE \

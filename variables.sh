@@ -1,5 +1,9 @@
-llamafile=gemma-2-9b-it.Q2_K.llamafile
-llamafileurl="https://huggingface.co/jartine/gemma-2-9b-it-llamafile/resolve/main/gemma-2-9b-it.Q2_K.llamafile"
+
+llamafile=gemma-2-9b-it-Q2_K.gguf
+llamafileurl="https://huggingface.co/bartowski/gemma-2-9b-it-GGUF/resolve/main/gemma-2-9b-it-Q2_K.gguf"
+
+# llamafile=gemma-2-9b-it.Q2_K.llamafile
+# llamafileurl="https://huggingface.co/jartine/gemma-2-9b-it-llamafile/resolve/main/gemma-2-9b-it.Q2_K.llamafile"
 
 # llamafile=Mistral-7B-Instruct-v0.3.Q4_0.llamafile
 # llamafileurl="https://huggingface.co/Mozilla/Mistral-7B-Instruct-v0.3-llamafile/resolve/main/Mistral-7B-Instruct-v0.3.Q4_0.llamafile"

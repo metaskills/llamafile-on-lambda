@@ -3,7 +3,8 @@ set -e
 
 source ./variables.sh
 
-$llamafiledir/$llamafile \
+llamafile \
+  --model $llamafiledir/$llamafile \
   --server \
   --fast \
   --gpu DISABLE \
