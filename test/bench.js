@@ -11,7 +11,9 @@ const baseURL = LAMBDA_FUNCTION_URL.endsWith("/")
 const openai = new OpenAI({ baseURL: `${baseURL}v1`, apiKey: "no-key" });
 
 async function sendMessage() {
-  const messages = [{ role: "user", content: "Hello" }];
+  const messages = [
+    { role: "user", content: "Few facts about a random bridge." },
+  ];
 
   try {
     const startTime = process.hrtime.bigint();
