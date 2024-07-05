@@ -10,19 +10,13 @@ echo "Starting llamafile ${LLAMAFILE_PATH}..."
 # --path /nonexistent
 # Avoid serving the non-API web interface.
 
-# Option I am still testing out.
-# 
-# --fast \
-# --nocompile \
-# --threads 3 \
-# --threads-batch 5 \
-# --timeout 600
-
 llamafile \
   --model $LLAMAFILE_PATH \
   --server \
   --fast \
+  --threads "$(nproc)" \
   --gpu DISABLE \
+  --timeout 600 \
   --nobrowser \
   --log-disable \
   --host 127.0.0.1 \

@@ -54,6 +54,9 @@ Value          https://rqtkljzqpunkbwcwm4iysxpg3m0oxyze.lambda-url.us-east-1.on.
 ------------------------------------------------------------------------------------
 ```
 
+## Findings
+
+* 6 Threads with 6 vCPUs is 40% faster than 3 Threads.
 
 ## Hurdles
 
