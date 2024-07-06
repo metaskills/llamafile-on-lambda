@@ -1,5 +1,6 @@
+# Temporary server warmup option workaround.
+# https://github.com/Mozilla-Ocho/llamafile/issues/485
 FROM node:20 as llamafile-builder
-
 RUN mkdir /opt/local && \
     cd /tmp && \
     git clone https://github.com/Mozilla-Ocho/llamafile.git && \
