@@ -8,7 +8,7 @@ RUN mkdir /opt/local && \
     make && \
     make install PREFIX=/opt/local
 
-FROM node:20
+FROM public.ecr.aws/lambda/nodejs:20
 
 # Create llamafile files
 RUN mkdir -p /opt/llamafile
@@ -16,10 +16,9 @@ COPY ./tmp/llamafile/* /opt/llamafile
 COPY src/command /opt/llamafile/
 
 # Install packages to support llamafile and other required tools
-RUN apt-get update && \
-    apt-get install -y findutils gzip && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+RUN microdnf update && \
+  microdnf install -y findutils gzip wget && \
+  microdnf clean all
 RUN wget -O /usr/bin/ape https://cosmo.zip/pub/cosmos/bin/ape-$(uname -m).elf && \
     chmod +x /usr/bin/ape
 
@@ -32,12 +31,9 @@ ENV AWS_LWA_INVOKE_MODE=response_stream
 ENV AWS_LWA_ASYNC_INIT=true
 ENV AWS_LWA_READINESS_CHECK_PATH=/health
 
-RUN mkdir -p /var/task
-WORKDIR "/var/task"
-
 COPY src/app.js \
      package.json \
      package-lock.json .
 
 # Start llamafile and no-op handler.
-CMD [ "node", "app.js" ]
+ENTRYPOINT [ "node", "app.js" ]
