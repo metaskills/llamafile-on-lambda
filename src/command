@@ -1,21 +1,16 @@
 #!/bin/sh
 set -e
 
-LLAMAFILE_PATH=${LLAMAFILE_PATH:-$(find "/opt/llamafile" -name "*.llamafile" -o -name "*.gguf" -type f)}
+LLAMAFILE_PATH=${LLAMAFILE_PATH:-$(find "/opt/llamafile" -name "*.llamafile" -type f)}
 
 echo "Starting llamafile ${LLAMAFILE_PATH}..."
 
-# Options that might make sense for you:
-# 
-# --path /nonexistent
-# Avoid serving the non-API web interface.
-
-llamafile \
-  --model $LLAMAFILE_PATH \
+$LLAMAFILE_PATH \
   --server \
   --fast \
   --threads "$(nproc)" \
   --gpu DISABLE \
+  --no-warmup \
   --timeout 600 \
   --nobrowser \
   --log-disable \

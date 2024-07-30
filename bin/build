@@ -4,7 +4,6 @@ set -e
 source ./variables.sh
 
 mkdir -p $llamafiledir
-mkdir -p ./tmp/bin
 
 if [ ! -f "$llamafiledir/$llamafile" ]; then
   curl -L "$llamafileurl" -o "$llamafiledir/$llamafile"
